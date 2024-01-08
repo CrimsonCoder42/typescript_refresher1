@@ -1,91 +1,26 @@
-// Type Alias 
+type One = string;
+type Two = number | string;
+type Three = 'hello'
 
-type stringOrNumber = string | number;
+let a: One = 'hello';
+let b = a as Two;
+let c = a as Three;
 
-type stringOrNumberArray = (string | number)[];
+let d = <One>'world'
 
-interface Guitarist {
-    name?: string,
-    active?: boolean,
-    albums: stringOrNumberArray,
+const addOrConcat = (a: number, b: number, c:'add' | 'concat'): number | string => {
+  if(c === 'add') {
+    return a + b;
+  }
+
+  return '' + a + b;
 }
 
-// Literal types
+let myVal: string = addOrConcat(1, 2, 'concat') as string;
 
-let myName: 'Devin';
-
-let userName: 'Dave' | 'Devin' | 'Reggie';
+let nextVal: number = addOrConcat(2, 2, 'concat') as number;
 
 
-// functions 
+// the Dom
 
-const add = (a: number, b: number): number => a + b;
-
-const logMsg = (message: any): void => console.log(message);
-
-
-logMsg("Hello World!")
-
-logMsg(add(5, 5))
-
-let subtract = function (a: number, b: number): number {
-    return a - b;
-}
-
-
-interface mathFunction {
-    (a: number, b: number): number;
-
-}
-
-let multiply: mathFunction = function (a, b){
-    return a * b;
-}
-
-logMsg(multiply(5, 5))
-
-// Optional Parameters
-
-const addAll = (a: number, b: number, c: number = 2): number => {
-        return a + b + c
-}
-
-logMsg(addAll(5, 5, 5))
-
-// Rest Parameters
-
-const total = (...nums: number[]): number => {
-    return nums.reduce((total, current) => total + current)
-}
-
-const myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-logMsg(total(...myArray))
-
-const createError = (errMsg: string): never => {
-    throw new Error(errMsg)
-}
-
-const infinite = () => {
-    let i: number = 1
-    while (true) {
-      i++
-      if (i > 100) break
-    }
-}
-
-const isNumber = (value: any): value is number => {
-    return typeof value === 'number' ? true : false
-}
-
-
-
-const numberOrString = (input: number | string): string => {
-    if (typeof input === 'number') {
-      return `Your number was ${input}`
-    } else if (typeof input === 'string') {
-      return `Your string was ${input}`
-    } else {
-      return input
-    }
-}
+const img = document.querySelector('img') as HTMLImageElement;
