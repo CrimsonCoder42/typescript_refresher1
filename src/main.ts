@@ -42,9 +42,9 @@ const exampleObj = {
     prop2: true,
 }
 
-type Guitarist = {
-    name: string,
-    active: boolean,
+interface Guitarist {
+    name?: string,
+    active?: boolean,
     albums: (string | number)[]
 }
 
@@ -53,6 +53,18 @@ let evh: Guitarist = {
     active: true,
     albums: ['1984', 5150, 'VH']
 }
+
+let jp: Guitarist = {
+    name: 'Jimmy',
+    active: true,
+    albums: ['I', 'II', 'IV']
+}
+
+const greetGuitarist = (guitarist: Guitarist) => {
+    return `Hello ${guitarist.name?.toUpperCase()}`;
+}
+
+console.log(greetGuitarist(jp))
 
 
 
