@@ -1,79 +1,91 @@
-let stringArr = ['one', 'hey', 'Devin']
+// Type Alias 
+
+type stringOrNumber = string | number;
+
+type stringOrNumberArray = (string | number)[];
+
+interface Guitarist {
+    name?: string,
+    active?: boolean,
+    albums: stringOrNumberArray,
+}
+
+// Literal types
+
+let myName: 'Devin';
+
+let userName: 'Dave' | 'Devin' | 'Reggie';
 
 
-let guitars = ['Strat', 'Les Paul', 5150]
+// functions 
 
-let mixedData = ['evh', 1984, true]
+const add = (a: number, b: number): number => a + b;
 
-
-stringArr[0] = 'John'
-stringArr.push('Paul')
-
-guitars[0]= 40
-guitars.unshift('Telecaster')
+const logMsg = (message: any): void => console.log(message);
 
 
-mixedData = guitars
+logMsg("Hello World!")
 
-let test = []
+logMsg(add(5, 5))
 
-let bands: string[] = []
-
-// Tuple
-let myTuple: [string, number, boolean] = ['hey', 40, true]
-
-let mixed = ['hey', 40, true]
-
-// Objects
-
-let myObj: object;
-
-myObj = []
-
-myObj = {
-    name: 'John',
-    age: 40,
-    isCool: true
+let subtract = function (a: number, b: number): number {
+    return a - b;
 }
 
 
-const exampleObj = {
-    prop1: 'John',
-    prop2: true,
+interface mathFunction {
+    (a: number, b: number): number;
+
 }
 
-
-
-let evh: Guitarist = {
-    name: 'Eddie',
-    active: true,
-    albums: ['1984', 5150, 'VH']
+let multiply: mathFunction = function (a, b){
+    return a * b;
 }
 
-let jp: Guitarist = {
-    name: 'Jimmy',
-    active: true,
-    albums: ['I', 'II', 'IV']
+logMsg(multiply(5, 5))
+
+// Optional Parameters
+
+const addAll = (a: number, b: number, c: number = 2): number => {
+        return a + b + c
 }
 
-const greetGuitarist = (guitarist: Guitarist) => {
-    if(guitarist.name) {
-      return `Hello ${guitarist.name?.toUpperCase()}`;
+logMsg(addAll(5, 5, 5))
+
+// Rest Parameters
+
+const total = (...nums: number[]): number => {
+    return nums.reduce((total, current) => total + current)
+}
+
+const myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+logMsg(total(...myArray))
+
+const createError = (errMsg: string): never => {
+    throw new Error(errMsg)
+}
+
+const infinite = () => {
+    let i: number = 1
+    while (true) {
+      i++
+      if (i > 100) break
     }
-    return 'Hello';
 }
 
-console.log(greetGuitarist(evh))
-
-
-// Enums 
-
-enum Grade {
-  U,
-  D,
-  C,
-  B,
-  A
+const isNumber = (value: any): value is number => {
+    return typeof value === 'number' ? true : false
 }
 
-console.log(Grade.U)
+
+
+const numberOrString = (input: number | string): string => {
+    if (typeof input === 'number') {
+      return `Your number was ${input}`
+    } else if (typeof input === 'string') {
+      return `Your string was ${input}`
+    } else {
+      return input
+    }
+}

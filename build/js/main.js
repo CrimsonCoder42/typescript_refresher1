@@ -1,54 +1,53 @@
 "use strict";
-let stringArr = ['one', 'hey', 'Devin'];
-let guitars = ['Strat', 'Les Paul', 5150];
-let mixedData = ['evh', 1984, true];
-stringArr[0] = 'John';
-stringArr.push('Paul');
-guitars[0] = 40;
-guitars.unshift('Telecaster');
-mixedData = guitars;
-let test = [];
-let bands = [];
-// Tuple
-let myTuple = ['hey', 40, true];
-let mixed = ['hey', 40, true];
-// Objects
-let myObj;
-myObj = [];
-myObj = {
-    name: 'John',
-    age: 40,
-    isCool: true
+// Type Alias 
+// Literal types
+let myName;
+let userName;
+// functions 
+const add = (a, b) => a + b;
+const logMsg = (message) => console.log(message);
+logMsg("Hello World!");
+logMsg(add(5, 5));
+let subtract = function (a, b) {
+    return a - b;
 };
-const exampleObj = {
-    prop1: 'John',
-    prop2: true,
+let multiply = function (a, b) {
+    return a * b;
 };
-let evh = {
-    name: 'Eddie',
-    active: true,
-    albums: ['1984', 5150, 'VH']
+logMsg(multiply(5, 5));
+// Optional Parameters
+const addAll = (a, b, c = 2) => {
+    return a + b + c;
 };
-let jp = {
-    name: 'Jimmy',
-    active: true,
-    albums: ['I', 'II', 'IV']
+logMsg(addAll(5, 5, 5));
+// Rest Parameters
+const total = (...nums) => {
+    return nums.reduce((total, current) => total + current);
 };
-const greetGuitarist = (guitarist) => {
-    var _a;
-    if (guitarist.name) {
-        return `Hello ${(_a = guitarist.name) === null || _a === void 0 ? void 0 : _a.toUpperCase()}`;
+const myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+logMsg(total(...myArray));
+const createError = (errMsg) => {
+    throw new Error(errMsg);
+};
+const infinite = () => {
+    let i = 1;
+    while (true) {
+        i++;
+        if (i > 100)
+            break;
     }
-    return 'Hello';
 };
-console.log(greetGuitarist(evh));
-// Enums 
-var Grade;
-(function (Grade) {
-    Grade[Grade["U"] = 0] = "U";
-    Grade[Grade["D"] = 1] = "D";
-    Grade[Grade["C"] = 2] = "C";
-    Grade[Grade["B"] = 3] = "B";
-    Grade[Grade["A"] = 4] = "A";
-})(Grade || (Grade = {}));
-console.log(Grade.U);
+const isNumber = (value) => {
+    return typeof value === 'number' ? true : false;
+};
+const numberOrString = (input) => {
+    if (typeof input === 'number') {
+        return `Your number was ${input}`;
+    }
+    else if (typeof input === 'string') {
+        return `Your string was ${input}`;
+    }
+    else {
+        return input;
+    }
+};
