@@ -1,3 +1,17 @@
-let userName = 'Devin';
+let myName: string = 'Devin'
+let meaningOfLife: number;
+let isLoading: boolean;
+let album: any;
 
-console.log(userName)
+myName = 'Alice';
+meaningOfLife = 42;
+isLoading = false;
+
+album = '1984';
+
+const sum = (a: number, b: number) => {
+  return a + b;
+}
+console.log(sum(1, 2));
+
+
