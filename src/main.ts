@@ -42,11 +42,7 @@ const exampleObj = {
     prop2: true,
 }
 
-interface Guitarist {
-    name?: string,
-    active?: boolean,
-    albums: (string | number)[]
-}
+
 
 let evh: Guitarist = {
     name: 'Eddie',
@@ -61,11 +57,23 @@ let jp: Guitarist = {
 }
 
 const greetGuitarist = (guitarist: Guitarist) => {
-    return `Hello ${guitarist.name?.toUpperCase()}`;
+    if(guitarist.name) {
+      return `Hello ${guitarist.name?.toUpperCase()}`;
+    }
+    return 'Hello';
 }
 
-console.log(greetGuitarist(jp))
+console.log(greetGuitarist(evh))
 
 
+// Enums 
 
+enum Grade {
+  U,
+  D,
+  C,
+  B,
+  A
+}
 
+console.log(Grade.U)
