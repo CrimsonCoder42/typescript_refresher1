@@ -12,6 +12,10 @@ album = '1984';
 const sum = (a: number, b: number) => {
   return a + b;
 }
-console.log(sum(1, 2));
+
+let postId: string | number;
+let isActive: boolean | null;
+
+let re: RegExp = /\w+/g;
 
 

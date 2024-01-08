@@ -10,4 +10,6 @@ album = '1984';
 const sum = (a, b) => {
     return a + b;
 };
-console.log(sum(1, 2));
+let postId;
+let isActive;
+let re = /\w+/g;
