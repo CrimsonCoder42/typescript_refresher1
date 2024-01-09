@@ -1,121 +1,41 @@
-class Coder {
+// index signature
+
+interface TransactionObj {
+  Pizza: number;
+  Books: number;
+  Job: number;
+}
+
+const todaysTransactions: TransactionObj = {
+  Books: -19,
+  Pizza: -5,
+  Job: 50
+}
+
+// console.log(todaysTransactions.Pizza);
+// console.log(todaysTransactions['Pizza'])
+
+interface Student {
+  // [key: string]: string | number | number[] | undefined;
   name: string;
-  music: string;
-  age: number;
-  language: string;
-
-  constructor(
-    name: string, 
-    music: string,
-    age: number, 
-    language: string = 'TypeScript'
-    ){
-    this.name = name;
-    this.music = music;
-    this.age = age;
-    this.language = language;
-  }
-
-  public getAge(): string {
-    return `Hello, I'm ${this.age}`;
-  }
-
-
+  GPA: number;
+  classes?: number[];
 }
 
-const Devin = new Coder('Devin', 'Rock', 40);
-// console.log(Devin.getAge());
-
-
-class WebDeveloper extends Coder {
-
-  constructor(
-    public computer: string,
-    name: string,
-    music: string,
-    age: number,
-  ) {
-    super(name, music, age);
-    this.computer = computer;
-  }
-
-  public getLang() {
-    return `I code in ${this.language}`;
-  }
+const student: Student = {
+  name: 'Jake',
+  GPA: 3.5,
+  classes: [342, 441, 441, 441]
 }
 
-const Izzy = new WebDeveloper('Mac', 'Izzy', 'Rock', 40);
+//console.log(student.test);
 
-// console.log(Izzy.getLang());
+// for (const key in student) {
+//   console.log(`${key}: ${student[key as keyof Student]}`)
+// }
 
-interface Musician {
-  name: string;
-  instrument: string;
-  play(action: string): string;
+const logStudentKey = (student: Student, key: keyof Student) => {
+  console.log(`${key}: ${student[key]}`)
 }
 
-class Guitarist implements Musician {
-  constructor(
-    public name: string,
-    public instrument: string
-  ) {
-    this.name = name;
-    this.instrument = instrument;
-  }
-
-  play(action: string): string {
-    return `${this.name} plays ${this.instrument} by ${action}`;
-  }
-}
-
-const DevinGuitar = new Guitarist('Devin', 'Guitar');
-
-// console.log(DevinGuitar.play('shredding'));
-
-class Peeps {
-  static count: number = 0;
-
-  static getCount(): number {
-    return Peeps.count;
-  }
-
-  public id: number;
-
-  constructor(public name: string) {
-    this.name = name;
-    this.id = ++Peeps.count;
-  }
-}
-
-const John = new Peeps('John');
-const Paul = new Peeps('Paul');
-const George = new Peeps('George');
-const Ringo = new Peeps('Ringo');
-
-class Bands {
-  private dataState : string[]
-
-  constructor() {
-    this.dataState = [];
-  }
-
-  public get data(): string[] {
-    return this.dataState;
-  }
-
-  public set data(value: string[]) {
-    if (Array.isArray(value) && value.every((el) => typeof el === 'string')) {
-      this.dataState = value;
-      return 
-    } else {
-      throw new Error('Data must be an array of strings');
-    }
-  }
-
-}
-
-const MyBands = new Bands();
-MyBands.data = ['The Beatles', 'The Rolling Stones', 'The Who'];
-MyBands.data = [...MyBands.data, 'The Kinks'];
-console.log(MyBands.data);
-MyBands.data = ['The Kinks']
+logStudentKey(student, 'GPA');
